@@ -1,0 +1,426 @@
+                                                    ASSIGNMENT
+============================================================================================================================
+07/10/2024
+Assignment
+
+Explain in details  
+1-pass by value 
+2-pass by reference
+3-call by value
+4-call by reference
+
+#SOLUTION
+Pass by Value means that when an argument is passed to a function, a copy of the actual data is passed. Therefore, any changes made to the parameters inside the function do not affect the actual data outside the function
+
+Pass by Reference means that when an argument is passed to a function, the memory address of the actual variable is passed, not a copy. Therefore, any changes made to the parameter inside the function directly modify the original data.
+
+Call by Value is the same as Pass by Value. The term "call" refers to how the function is invoked, and the "by value" refers to how the data is passed. When a function is called by value, a copy of the argument is passed to the function.
+
+Call by Reference is the same as Pass by Reference. The function receives a reference (address) to the actual argument, allowing the function to modify the original data.
+
+==========================1. Strings:- 
+	• " "
+	•  ' '
+	• """ """
+	•  ''' '''
+• Function :-
+	• It is like a coffee machine.
+2. Escape sequences:-
+	• \n(new line)
+3. String format method:-
+	• '{name}'.format(name='')
+4. f-string:-
+	• f'{name}'
+5. Conditional Statement
+6. Indentation
+
+	• Confidence
+	• Communication
+	• Presentation
+	• Content
+	• Feedback
+
+27 September 2024
+
+	- List-> Sequence of elements
+	- Index-> subscript -> member of position from the initial value
+	- Dictionaries->
+		○ Insertion order of key is same, but value are unorder
+		○ Added after python 3.6 
+		○ Items()-> return all element 
+		○ Values()-> return all value in list format
+		○ Keys()-> return all keys in list format
+	- Keys property-> Unique, Non-empty, immutable, Hashable key
+	- Loops 
+	- Functions
+	- Variables - store address of the actual data (Reference)
+	- Reference
+	- Conditionals
+	- Input and Output
+	- Approach -> Top to bottom or Button to top approach
+	- Top to bottom -> Start thinking from output
+	- Button to top -> from basic things to output 
+	- Local variable -> 
+	- Constraint- > limitation of anything (ex. Storing limited value)
+	- Positive, negative and neutral test cases 
+	- Array -> Store collection of things/ store multiple value in a single variable 
+	- Id()-> return reference of variable 
+
+25 Sep 2024 
+
+	- f-string-> substitute the value in string literal 
+	- Tokens -> Smallest unit in programming language
+	- Operator chaining -> more than 3 operand are joining with operator
+
+		Ex-> 10<11<2
+	- Exception -> halt program
+	- Error->
+	- Getter and setter metho
+	- Camel Case naming 
+	- Function -> Pascals case
+	- Parameter -> input to the function 
+	- For loop -> where counter need with loop
+	- while loop -> where only loop require 
+	- break
+	- Try ->
+	- Catch-> 
+	- Literals 
+	- ValueError
+
+	1. Function 
+
+	- Like a coffee Machine 
+	- It perform a particular task 
+	- Take some input and give some output 
+
+	2. Scape Sequences 
+
+30 September 2024
+
+	- Hashing - find value in one step -> 
+		Hashable -> data should be unique, unique value, can't reuse
+	- Prezi Presentation maker platform 
+	- Canva presentation 
+	- Dictionary
+	- Membership operator -> in 
+	- Loops (For each loop)
+	- Print list of line in one line 
+	- Print -> 5 parameter 
+		○ Sep -> separate each value in current print statement
+		○ End -> end="\n"
+		○ *value
+		○ File -X
+		○ Flush -> X
+	-  unpacking the item -> 
+	- Asteric in python - * -> capacity 0 to more (no limit)
+	- Break
+
+07 October 2024
+
+	- -> return type symbol 
+	- : in function type 
+	- * capacity - 0 or more range {0, }
+	- Print()
+		○ Sep
+		○ End
+		○ *value
+	- Input()
+	- / used to positional only for function
+	- *  used for keyword only parameter for function
+		○ Position only -> position/keyword -> keyword only
+	- Keyword only arguments
+	- Position only 
+	- Literal string -> whitespace character 
+	- String methods
+		○ Split()- separating it 
+			§ 4 argument
+			§ Maxsplit
+	- Getattr()
+
+	- Values()
+	- Keys()
+	- Items()
+	- Update()
+	- Getattr()
+
+4 October 2024
+-> value error
+-> ZeroDivisionError
+-> NameError
+-> IndexError
+	- Insertion -> modification -> updation
+-> Operation on list -> 
+		○ CREATING LIST ->
+			§ L=[2,4,5]
+			§ L2=LIST()
+		○ Deletion in list ->
+			§ Del listname
+			§ Del listname[index]
+		○ Insertion in list -> 
+			§ Listname[index]=value
+			§ Listname.append(value)
+		○ Getting - fetching 
+			§ Listname[index]
+		○ Traversing - 
+			§ For loop -> counter 
+			§ For each -  use for accessing sequences, value based loop
+			§ Rx- list=[2,4,5,4,3,4,5]
+			§ For I in list:
+				□ Print(i)
+		○ Methods- 
+			§ Sort- rearranging the element in 
+				□ List. Sort(reverse=True)
+			§ Append()
+			§ Insert()
+			§ Extend()
+			
+			
+	- List() method 
+	- Garbage collector - 
+	- Range()-> iterator  repeat itself continuously 
+		○ Three parameter (start, stop, step)
+	- In -> membership operator
+	- Done done method add
+
+09/10/2024
+	• Id->address. Of variable
+	• Instance ->copy of anything
+		○ y='hi'->instance of string
+		○ y=12->instance of int
+	• Tuple ->default way to store value in python is tuple
+	• Set-> unordered, un-indexed, mutable, keys, unique, we can add, del but can not modify
+		○ Set={10,10,20,30}
+		○ Print(x)
+	• Unordered-> order of insertion is not fixed (not care about the order it store where free space is found to make it faster)
+		○ Speed is one the important factor
+		○ Jumble 
+	• Mutable -> value can be changed in right side 
+		○ s={1,2,3,'hi','bye',[1,2,3]}
+		○ Print(s)
+	• Immutable-> cannot be changed 
+	• Hashing -> called magic in python
+	• Modular mathematics in python
+	• Dander method->    x._add_(y) 
+		○ Use for addition
+		○ Definition is different for integer and string 
+
+11/10/2024
+	Standard and implementation
+	Modular
+
+21/10/2024
+Ques:- Alternate sum of the digits
+	• Given a positive integer, write a python program to calculate the difference of the sum of the digits at even and odd position
+	• Take input- +ve integer
+	• Print x-y;
+	• Where x=sum of odd position and y=sum of the even position
+	• Counting start from rightmost.
+	
+
+
+
+18/10/2024
+	- Recursion
+	- Types of the recursion :-
+		○ Linear  recursion 
+		○ Head  recursion 
+		○ Tail  recursion 
+		○ Nested  recursion 
+		○ Direct  recursion :- Calling itself 
+		○ Binary  recursion 
+
+
+		○ Mutual or indirect  recursion :- means calling two function each other
+		○ Multi recursion 
+		
+	- Last line of code  means where logic ends
+	- Class:-collection of functions, those function are called methods
+
+25/10/2024
+	•  self:-it is used to increase the scope within class or object.
+	• Can you write written statement in constructor
+
+	• 23/10/2024
+	• Self :-Gives the reference of the current variable
+	• Constructor :-
+		○ it is firstly executed when object is created
+		○ For declaration we use:-  def_init_():
+		○ We can not use pass for constructor===================================================================================================
+
+
+=============================================================================================================================
+                                                     PROJECT 04   DATE 11/11/2024  Student Grading System
+-----------------------------------------------------------------------------------------------------------------------------
+Take user name 
+Take marks of different subject
+Take Grade of Diff Subject
+Calculate average the marks and grade
+
+Why What When how
+convert each value from String to Integer in the list L
+Store all of them list using split method
+List Insert method
+List append Method
+List Compression 
+split method
+ASSIGNMENT:-
+Write any five example using on map function
+Simple Quiz Game that asked series of multiple question
+
+
+
+#map function
+def square(x):
+    return x ** 2
+num = [1, 2, 3, 4, 5]
+result = map(square, num)
+print(list(result))  # Output: [1, 4, 9, 16, 25]
+
+
+
+
+
+words = ["hello", "world", "python"]
+result = map(str. upper, words)
+print(list(result))  # Output: ['HELLO', 'WORLD', 'PYTHON']
+
+
+
+
+num = [1, 2, 3, 4, 5]
+result = map(lambda x: x + 10, num)
+print(list(result))  # Output: [11, 12, 13, 14, 15]
+
+
+
+
+
+words = ["apple", "banana", "cherry", "date"]
+result = map(lambda word: word[0], words)
+print(list(result))  # Output: ['a', 'b', 'c', 'd']
+
+=============================================================================================================================
+                                     Project Name:-Task Manager
+----------------------------------------------------------------------------------------------------------------------------
+
+1 dictionaries
+2 functions  :- add ,delete, complete task
+3 conditions
+4 packages
+5 filters
+6 Jason
+7 file handling
+8 documentation
+9 enumerate
+
+Priories queues 
+Task name:- date, description, status ,title of task ,
+=====================================================================================================================
+How to pop method works in dictionaries before in python 3.6
+Why 3.11 does not work in f string and work on 3.12 version 
+by default lambda function return something
+=============================================================================================================================
+hash():-
+1 it must be unique 
+2 it must be immutable
+3 it not empty
+4 hide the meaning of data
+hash function return the value of object
+Secure data
+
+list is a ordered collection of datatype
+list is mutable
+What is dictionaries in java
+============================================================================================================================
+                      Project Name:-LMS(Learning Management System)
+Features:
+1 Add Books(title ,author ,publication, year, joiner,)
+2 Borrow Books(tracing availability, )
+3 Returns Books
+4 Search and filter books by title ,joiner
+5 Advanced Feature Add Due date to borrowed books
+6 Track overdue books and calculate fine
+7 Loading data and save data externally
+Concept:
+1 OOPS
+2 Class and object Method
+3 file Handling 
+=====================================================================================================================
+
+Class:-	collection of functions, variables ,classes.
+
+Types of Member:-class member, Instance Member
+
+Objects:- 1.Provides Memory Storage, Object creation is also known as construction.
+Object construction is taken by class.
+Construction of object will be handled by constructor of the class.
+constructor is executed at the beginning of the object creation.
+2.Format of Memory 
+3.Predefined processes in the form of function(Method)
+In Python is Dynamically typed language.
+
+Documentation:-
+1.Abstract :-min 10 lines
+2.Summery of project (Introduction)
+3.New Features
+4.Modules and Features(Add, delete etc)
+5.Atlest 6 features of project
+6.Technology
+7.Algorathims/Approach
+8.Flowchart (minimum two diagram are required)
+9.Project Explanation 
+10.The document should be IEEE format, subheading 14 ,normal 12, Main heading 16 line,
+line space is normal, Standard paragraph 
+11.Project report 85 pages, without screenshot 20pages 
+12.PPT
+
+
+
+
+
+
+
+1.Hierarchical of grouping
+2.When we have create a multiple time function in side  so storage problem occurred
+a. storage ,Scope, Self
+The purpose of Class Create an object like List ,Tuple 
+
+==========================================================================================================================
+
+1. creating a memory
+2.Constructor execution
+3.copy execution
+4 allocating
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
