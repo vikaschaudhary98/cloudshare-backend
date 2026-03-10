@@ -38,9 +38,9 @@ public class ClerkJwtAuthFilter extends OncePerRequestFilter {
 		String path=request.getServletPath();
 		
 		
-		if(path.startsWith("/webhooks") ||
+		if(path.startsWith("/api/v1.0/webhooks") ||
 				
-			 path.startsWith("/register") ||
+			 path.startsWith("/api/v1.0/register") ||
 				request.getRequestURI().contains("/public") || request.getRequestURI().contains("/download")) {
 			filterChain.doFilter(request, response);
 			return;
