@@ -1,21 +1,17 @@
 package in.vikaschaudhary.cloudshareapi.security;
-
 import java.io.IOException;
 import java.security.PublicKey;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.Collections;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
@@ -28,77 +24,74 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ClerkJwtAuthFilter extends OncePerRequestFilter {
 
-	@Value("${clerk.issuer}")
-	private String clerkIssuer;
-	private final ClerkJwksProvider jwksProvider;
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
-		
-		String path=request.getServletPath();
-		
-		
-		if(path.startsWith("/api/v1.0/webhooks") ||
-				
-			 path.startsWith("/api/v1.0/register") ||
-				request.getRequestURI().contains("/public") || request.getRequestURI().contains("/download")) {
-			filterChain.doFilter(request, response);
-			return;
-		}
-		
-		 String authHeader=request.getHeader("Authorization");
-		 
-		 if(authHeader==null || !authHeader.startsWith("Bearer ")) {
-			response.sendError(HttpServletResponse.SC_FORBIDDEN,"Authorization header missing");
-			return ;
-		 }
-		 
-		 try {
-			String token=authHeader.substring(7);
-					String []chunks=token.split("\\.");
-					
-             		if(chunks.length<3) {
-             			response.sendError(HttpServletResponse.SC_FORBIDDEN,"Invalid JWT Token");
-			    return;
-             		}
+    @Value("${clerk.issuer}")
+    private String clerkIssuer;
+    
+    private final ClerkJwksProvider jwksProvider;
+
+    // ✅ YAHAN FIX HAI - shouldNotFilter method add kiya
+    
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getServletPath();
+        return path.equals("/health") ||
+               path.startsWith("/webhooks") ||
+               path.startsWith("/register") ||
+               path.contains("/public") ||
+               path.contains("/download");
+    }
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+        
+        String authHeader = request.getHeader("Authorization");
+         
+        if(authHeader == null || !authHeader.startsWith("Bearer ")) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Authorization header missing");
+            return;
+        }
+         
+        try {
+            String token = authHeader.substring(7);
+            String[] chunks = token.split("\\.");
+                    
+            if(chunks.length < 3) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid JWT Token");
+                return;
+            }
              		
+            String headerJson = new String(Base64.getUrlDecoder().decode(chunks[0]));
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode headerNode = mapper.readTree(headerJson);
              		
-             		 String headerJson=new String(Base64.getUrlDecoder().decode(chunks[0]));
-             		ObjectMapper mapper=new ObjectMapper();
-             		JsonNode headerNode=mapper.readTree(headerJson);
+            if(!headerNode.has("kid")) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "Token header is missing");
+                return;
+            }
              		
-             		if(!headerNode.has("kid")) {
-             			response.sendError(HttpServletResponse.SC_FORBIDDEN,"Token header is missing");
-             			return;
-             		}
+            String kid = headerNode.get("kid").asText();
+            PublicKey publicKey = jwksProvider.getPublicKey(kid);
              		
-             		String kid=headerNode.get("kid").asText();
-             		PublicKey publicKey=jwksProvider.getPublicKey(kid);
-             		
-             		Claims claims=Jwts.parser()
-             				.verifyWith(publicKey)
-//             		        .setAllowedClockSkewSeconds(60)
-             		        .requireIssuer(clerkIssuer)
-             		        .build()
-             		        .parseSignedClaims(token)
-             		        .getPayload();
+            Claims claims = Jwts.parser()
+                    .verifyWith(publicKey)
+                    .requireIssuer(clerkIssuer)
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+                        
+            String clerkId = claims.getSubject();
+            UsernamePasswordAuthenticationToken authenticationToken = 
+                new UsernamePasswordAuthenticationToken(
+                    clerkId, null, 
+                    Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN"))
+                );
+                        
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            filterChain.doFilter(request, response);
              		        
-             		        String clerkId=claims.getSubject();
-             		        UsernamePasswordAuthenticationToken authenticationToken=new UsernamePasswordAuthenticationToken(clerkId, null, Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN")));
-             		        
-             		        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-             		       System.out.println("Auth set: " + SecurityContextHolder.getContext().getAuthentication());
-             		        filterChain.doFilter(request, response);
-             		        
-			 
-		} catch (Exception e) {
-			 e.printStackTrace();
-			response.sendError(HttpServletResponse.SC_FORBIDDEN,"Invalid Jwt token");
-			return; 
-		}
-		   
-		
-	}
-	
-	
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid Jwt token");
+        }
+    }
 }

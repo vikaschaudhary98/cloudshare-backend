@@ -28,7 +28,7 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain (HttpSecurity httpSecurity) throws Exception{
 		httpSecurity.cors(Customizer.withDefaults())
 		.csrf(AbstractHttpConfigurer::disable)
-		.authorizeHttpRequests(auth->auth.requestMatchers("/api/v1.0/webhooks/**","/api/v1.0/files/public/**","/api/v1.0/files/download/**","/api/v1.0/register").permitAll()
+		.authorizeHttpRequests(auth->auth.requestMatchers("/api/v1.0/webhooks/**","/api/v1.0/files/public/**","/api/v1.0/files/download/**","/api/v1.0/register", "/health").permitAll()
 		.anyRequest().authenticated())
 		.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 		.addFilterBefore(clerkJwtAuthFilter,UsernamePasswordAuthenticationFilter.class);
